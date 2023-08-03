@@ -142,6 +142,7 @@ class GFG
             1. Add new Employee
             2. Edit employee
             3. Remove employee
+            4. Exit
             """);
             System.Console.Write("Enter: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -153,7 +154,7 @@ class GFG
                 2. Fresher
                 3. Intern
                 """);
-                System.Console.WriteLine("Enter: ");
+                System.Console.Write("Enter: ");
                 int type = Convert.ToInt32(System.Console.ReadLine());
                 switch (type)
                 {
@@ -364,6 +365,53 @@ class GFG
                     }
                 }
             }
+            else if (choice == 4)
+            {
+                break;
+            }
+            else
+            {
+                System.Console.WriteLine("Your input is invalid");
+            }
         } while (choice != 0);
+
+        // 2. Chuc nang in thong tin nhan vien
+        choice = -1;
+        do
+        {
+            System.Console.WriteLine("""
+            Show information of employee
+            1. Experience
+            2. Fresher
+            3. Intern
+            """);
+            System.Console.Write("Enter: ");
+            choice = Convert.ToInt32(Console.ReadLine());
+            if (choice == 1)
+            {
+                foreach (Experience e in employee)
+                {
+                    e.ShowInfo();
+                }
+            }
+            else if (choice == 2)
+            {
+                foreach (Fresher f in employee)
+                {
+                    f.ShowInfo();
+                }
+            }
+            else if (choice == 3)
+            {
+                foreach (Intern i in employee)
+                {
+                    i.ShowInfo();
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("Your input is invalid");
+            }
+        }        
     }
 }
