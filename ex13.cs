@@ -384,6 +384,7 @@ class GFG
             1. Experience
             2. Fresher
             3. Intern
+            4. Exit
             """);
             System.Console.Write("Enter: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -408,10 +409,14 @@ class GFG
                     i.ShowInfo();
                 }
             }
+            else if (choice == 4)
+            {
+                break;
+            }
             else
             {
                 System.Console.WriteLine("Your input is invalid");
             }
-        }        
+        } while (choice != 0);
     }
 }
