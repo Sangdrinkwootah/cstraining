@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Reflection.Emit;
 class Nguoi
@@ -14,10 +15,9 @@ class Nguoi
         this.Nghe = nghe;
         this.CMND = cmnd;
     }
-
-    public override string ToString()
+    public void InThongTinCaNhan()
     {
-        return "Ten: " + HoTen + " Tuoi: " + Tuoi + " Nghe: " + Nghe + " CMND: " + CMND;
+        System.Console.WriteLine("Ten: " + HoTen + "\nTuoi: " + Tuoi + "\nNghe: " + Nghe + "\nCMND: " + CMND);
     }
 }
 
@@ -31,10 +31,13 @@ class HoGiaDinh
         this.lists = lists;
         this.address = address;
     }
-
-    public override string ToString()
+    public void InThongTinGiaDinh()
     {
-        return "Ho gia dinh: " + lists + "Dia chi: " + address;
+        System.Console.WriteLine("Dia chi: " + address);
+        foreach (var l in lists)
+        {
+            l.InThongTinCaNhan();
+        }
     }
 }
 
@@ -51,6 +54,15 @@ class KhuPho
     {
         this.hogiadinh.Add(hogiadinh);
     }
+
+    public void InThongTinKhuPho()
+    {
+        foreach (var h in hogiadinh)
+        {
+            System.Console.WriteLine("Ho Gia Dinh:");
+            h.InThongTinGiaDinh();
+        }
+    }
 }
 
 class GFG
@@ -63,19 +75,31 @@ class GFG
 
         for (int i = 0; i < n; i++)
         {
+            System.Console.WriteLine("Ho gia dinh " + (i+1) + ": ");
             System.Console.Write("Dia chi: ");
             string address = Console.ReadLine();
 
             List<Nguoi> nguoi = new List<Nguoi>();
-            System.Console.WriteLine("So nguoi trong nha: ");
+            System.Console.Write("So nguoi trong nha: ");
             int num = Convert.ToInt32(Console.ReadLine());
             
             for (int j = 0; j < num; j++)
             {
-
+                System.Console.WriteLine("Nguoi " + (j+1) + ": ");
+                System.Console.Write("Ho ten: ");
+                string name = Console.ReadLine();
+                System.Console.Write("Tuoi: ");
+                int age = Convert.ToInt32(Console.ReadLine());
+                System.Console.Write("Nghe nghiep: ");
+                string nghe = Console.ReadLine();
+                System.Console.Write("So CMND: ");
+                string cmnd = Console.ReadLine();
+                Nguoi ng = new Nguoi(name, age, nghe, cmnd);
+                nguoi.Add(ng);
             }
-
+            System.Console.WriteLine();
             khupho.ThemHoGiaDinh(new HoGiaDinh(nguoi, address));
         }
+        khupho.InThongTinKhuPho();
     }
 }
