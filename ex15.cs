@@ -21,6 +21,10 @@ class SinhVien
     {
 
     }
+    public virtual void HienThiLoaiSinhVien()
+    {
+
+    }
 }
 
 class SinhVienTaiChuc : SinhVien
@@ -45,6 +49,10 @@ class SinhVienTaiChuc : SinhVien
             System.Console.WriteLine("Diem: " + d.DiemTB);
         }
     }
+    public override void HienThiLoaiSinhVien()
+    {
+        System.Console.WriteLine("Sinh vien tai chuc");
+    }
 }
 
 class SinhVienChinhQuy : SinhVien
@@ -66,6 +74,10 @@ class SinhVienChinhQuy : SinhVien
             System.Console.WriteLine("Hoc ki: " + d.TenHK);
             System.Console.WriteLine("Diem: " + d.DiemTB);
         }
+    }
+    public override void HienThiLoaiSinhVien()
+    {
+        System.Console.WriteLine("Sinh vien chinh quy");
     }
 }
 
@@ -102,6 +114,7 @@ class GFG
             System.Console.WriteLine("""
             1. Them sinh vien
             2. Kiem tra loai sinh vien theo ma so sinh vien
+            3. Diem trung binh mon theo hoc ki
             """);
             System.Console.Write("Nhap: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -181,18 +194,19 @@ class GFG
             else if (choice == 2)
             {
                 System.Console.Write("Nhap ma so sinh vien: ");
-                string tmasv = Console.ReadLine();
+                string masv = Console.ReadLine();
                 foreach (SinhVien s in sv)
                 {
-                    if (s.MaSV == tmasv)
+                    if (s.MaSV == masv)
                     {
-                        
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Khong ton tai sinh vien");
+                        s.HienThiLoaiSinhVien();
                     }
                 }
+            }
+            else if (choice == 3)
+            {
+                System.Console.Write("Ten hoc ky: ");
+                string tenhk = Console.ReadLine();
             }
         } while (choice != 0);
         foreach (SinhVien s in sv)
