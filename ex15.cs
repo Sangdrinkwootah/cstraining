@@ -92,14 +92,19 @@ class Khoa
     public List<SinhVien> DSSV { get; set; }
 }
 
+class Truong
+{
+    List<Khoa> DSKhoa { get; set; }
+}
+
 class DSKQ
 {
     public string TenHK { get; set; }
     public double DiemTB { get; set; }
-    public List<DSKQ> dskq;
+    public List<SinhVien> dskq;
     public DSKQ()
     {
-        dskq = new List<DSKQ>();
+        dskq = new List<SinhVien>();
     }
     public DSKQ(string tenhk, double diemtb)
     {
@@ -113,6 +118,8 @@ class GFG
     static void Main(string[] args)
     {
         List<SinhVien> sv = new List<SinhVien>();
+        List<Khoa> dskhoa = new List<Khoa>();
+        List<SinhVien> DSKQSV = new List<SinhVien>();
         int choice = -1;
         do
         {
@@ -120,6 +127,8 @@ class GFG
             1. Them sinh vien
             2. Kiem tra loai sinh vien theo ma so sinh vien
             3. Tong so sinh vien chinh quy
+            4. Lay diem trung binh mon cua sinh vien cao nhat khoa
+            5. Lay diem trung binh mon theo ten hoc ki
             """);
             System.Console.Write("Nhap: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -219,6 +228,37 @@ class GFG
                     }
                 }
                 System.Console.WriteLine("So sinh vien chinh quy la: " + count);
+            }
+            else if (choice == 4)
+            {
+                System.Console.Write("Ten khoa: ");
+                string tenkhoa = Console.ReadLine();
+                foreach (Khoa k in dskhoa)
+                {
+                    if (k.TenKhoa == tenkhoa)
+                    {
+                        max = k.DSSV[0];
+                        int tname;
+                        for (int i = 0; i < k.DSSV.Count; i++)
+                        {
+                            if (k.DSSV[i] > max)
+                            {
+                                max = k.DSSV[i];
+                                tname = k.DSSV[i].HoTen.ToString();
+                            }
+                        }
+                    }
+                }
+                System.Console.WriteLine("Diem cao nhat khoa la " + max + ", thuoc ve sinh vien " + tname);
+            }
+            else if (choice == 5)
+            {
+                System.Console.Write("Ten hoc ky: ");
+                string tenhk = Console.ReadLine();
+                foreach (SinhVien d in DSKQSV)
+                {
+                    
+                }
             }
         } while (choice != 0);
         foreach (SinhVien s in sv)
