@@ -1,3 +1,10 @@
+using System.Runtime.ExceptionServices;
+using System.Drawing;
+using Internal;
+using System.Dynamic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System;
 using System.Runtime.ConstrainedExecution;
 class Employee
 {
@@ -162,14 +169,88 @@ class GFG
                     {
                         System.Console.Write("ID: ");
                         string id = Console.ReadLine();
-                        System.Console.Write("Name: ");
-                        string name = Console.ReadLine();
-                        System.Console.Write("Date of birth: ");
-                        string birthday = Console.ReadLine();
-                        System.Console.Write("Phone number: ");
-                        string phone = Console.ReadLine();
-                        System.Console.Write("Email: ");
-                        string email = Console.ReadLine();
+
+                        // System.Console.Write("Name: ");
+                        // string name = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Name: ");
+                            string name = Console.ReadLine();
+                            NameValidator.ValidateName(name);
+                            System.Console.WriteLine("Validating name");
+                        }
+                        catch (NameException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+                        
+                        // System.Console.Write("Date of birth: ");
+                        // string birthday = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Year of birth: ");
+                            int y = Convert.ToInt32(Console.ReadLine());
+                            System.Console.Write("Month of birth: ");
+                            int m = Convert.ToInt32(Console.ReadLine());
+                            System.Console.Write("Day of birth: ");
+                            int d = Convert.ToInt32(Console.ReadLine());
+                            DateTime birthday = new DateTime(y,m,d);
+                            BirthdayValidator.ValidateBirthDay(birthday);
+                            System.Console.WriteLine("Validating birthday");
+                        }
+                        catch (BirthDayException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+
+                        // System.Console.Write("Phone number: ");
+                        // string phone = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Phone number: ");
+                            string phone = Console.ReadLine();
+                            PhoneNumberValidator.ValidatePhoneNumber(phone);
+                            System.Console.WriteLine("Validating phone number");
+                        }
+                        catch (PhoneNumberException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+
+                        // System.Console.Write("Email: ");
+                        // string email = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Email: ");
+                            string email = Console.ReadLine();
+                            EmailValidator.ValidateEmail(email);
+                            System.Console.WriteLine("Validating email address: ");
+                        }
+                        catch (EmailException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.message);
+                        }
+
                         System.Console.Write("Experience in year: ");
                         int expinyear = Convert.ToInt32(Console.ReadLine());
                         System.Console.Write("Professional skill: ");
@@ -201,14 +282,88 @@ class GFG
                     {
                         System.Console.Write("ID: ");
                         string id = Console.ReadLine();
-                        System.Console.Write("Name: ");
-                        string name = Console.ReadLine();
-                        System.Console.Write("Date of birth: ");
-                        string birthday = Console.ReadLine();
-                        System.Console.Write("Phone number: ");
-                        string phone = Console.ReadLine();
-                        System.Console.Write("Email: ");
-                        string email = Console.ReadLine();
+
+                        // System.Console.Write("Name: ");
+                        // string name = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Name: ");
+                            string name = Console.ReadLine();
+                            NameValidator.ValidateName(name);
+                            System.Console.WriteLine("Validating name");
+                        }
+                        catch (NameException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+                        
+                        // System.Console.Write("Date of birth: ");
+                        // string birthday = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Year of birth: ");
+                            int y = Convert.ToInt32(Console.ReadLine());
+                            System.Console.Write("Month of birth: ");
+                            int m = Convert.ToInt32(Console.ReadLine());
+                            System.Console.Write("Day of birth: ");
+                            int d = Convert.ToInt32(Console.ReadLine());
+                            DateTime birthday = new DateTime(y,m,d);
+                            BirthdayValidator.ValidateBirthDay(birthday);
+                            System.Console.WriteLine("Valid birthday");
+                        }
+                        catch (BirthDayException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e);
+                        }
+
+                        // System.Console.Write("Phone number: ");
+                        // string phone = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Phone number: ");
+                            string phone = Console.ReadLine();
+                            PhoneNumberValidator.ValidatePhoneNumber(phone);
+                            System.Console.WriteLine("Validating phone number");
+                        }
+                        catch (PhoneNumberException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+
+                        // System.Console.Write("Email: ");
+                        // string email = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Email: ");
+                            string email = Console.ReadLine();
+                            EmailValidator.ValidateEmail(email);
+                            System.Console.WriteLine("Validating email address: ");
+                        }
+                        catch (EmailException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.message);
+                        }
+
                         System.Console.Write("Graduation date: ");
                         string graduation_date = Console.ReadLine();
                         System.Console.Write("Graduation rank: ");
@@ -242,14 +397,88 @@ class GFG
                     {
                         System.Console.Write("ID: ");
                         string id = Console.ReadLine();
-                        System.Console.Write("Name: ");
-                        string name = Console.ReadLine();
-                        System.Console.Write("Date of birth: ");
-                        string birthday = Console.ReadLine();
-                        System.Console.Write("Phone number: ");
-                        string phone = Console.ReadLine();
-                        System.Console.Write("Email: ");
-                        string email = Console.ReadLine();
+
+                        // System.Console.Write("Name: ");
+                        // string name = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Name: ");
+                            string name = Console.ReadLine();
+                            NameValidator.ValidateName(name);
+                            System.Console.WriteLine("Validating name");
+                        }
+                        catch (NameException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+                        
+                        // System.Console.Write("Date of birth: ");
+                        // string birthday = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Year of birth: ");
+                            int y = Convert.ToInt32(Console.ReadLine());
+                            System.Console.Write("Month of birth: ");
+                            int m = Convert.ToInt32(Console.ReadLine());
+                            System.Console.Write("Day of birth: ");
+                            int d = Convert.ToInt32(Console.ReadLine());
+                            DateTime birthday = new DateTime(y,m,d);
+                            BirthdayValidator.ValidateBirthDay(birthday);
+                            System.Console.WriteLine("Valid birthday");
+                        }
+                        catch (BirthDayException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e);
+                        }
+
+                        // System.Console.Write("Phone number: ");
+                        // string phone = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Phone number: ");
+                            string phone = Console.ReadLine();
+                            PhoneNumberValidator.ValidatePhoneNumber(phone);
+                            System.Console.WriteLine("Validating phone number");
+                        }
+                        catch (PhoneNumberException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.Message);
+                        }
+
+                        // System.Console.Write("Email: ");
+                        // string email = Console.ReadLine();
+
+                        try
+                        {
+                            System.Console.Write("Email: ");
+                            string email = Console.ReadLine();
+                            EmailValidator.ValidateEmail(email);
+                            System.Console.WriteLine("Validating email address: ");
+                        }
+                        catch (EmailException e)
+                        {
+                            System.Console.WriteLine("Error: " + e.message);
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine("Unexpected error: " + e.message);
+                        }
+
                         System.Console.Write("Majors: ");
                         string majors = Console.ReadLine();
                         System.Console.Write("Semester: ");
@@ -309,31 +538,101 @@ class GFG
                         {
                             case 1:
                             {
-                                System.Console.Write("New name: ");
-                                string tname = Console.ReadLine();
-                                e.FullName = tname;
-                                break;
+                                try
+                                {
+                                    System.Console.Write("New name: ");
+                                    string tname = Console.ReadLine();
+                                    NameValidator.ValidateName(tname);
+                                    System.Console.WriteLine("Validating name");
+                                }
+                                catch (NameException e)
+                                {
+                                    System.Console.WriteLine("Error: " + e.Message);
+                                }
+                                catch (Exception e)
+                                {
+                                    System.Console.WriteLine("Unexpected error: " + e.Message);
+                                }
+                                finally
+                                {
+                                    e.FullName = tname;
+                                    break;
+                                }
                             }
                             case 2:
                             {
-                                System.Console.Write("New date of birth: ");
-                                string tdob = Console.ReadLine();
-                                e.BirthDay = tdob;
-                                break;
+                                try
+                                {                                    
+                                    System.Console.WriteLine("New birth day: ");
+                                    System.Console.Write("Year of birth: ");
+                                    int ty = Convert.ToInt32(Console.ReadLine());
+                                    System.Console.Write("Month of birth: ");
+                                    int tm = Convert.ToInt32(Console.ReadLine());
+                                    System.Console.Write("Day of birth: ");
+                                    int td = Convert.ToInt32(Console.ReadLine());
+                                    DateTime tdob = new DateTime(ty,tm,td);
+                                    BirthdayValidator.ValidateBirthDay(tbirthday);
+                                    System.Console.WriteLine("Validating birthday");
+                                }
+                                catch (BirthDayException e)
+                                {
+                                    System.Console.WriteLine("Error: " + e.Message);
+                                }
+                                catch (Exception e)
+                                {
+                                    System.Console.WriteLine("Unexpected error: " + e);
+                                }
+                                finally
+                                {
+                                    e.BirthDay = tdob;
+                                    break;
+                                }                                
                             }
                             case 3:
                             {
-                                System.Console.Write("New phone number: ");
-                                string tphone = Console.ReadLine();
-                                e.Phone = tphone;
-                                break;
+                                try
+                                {
+                                    System.Console.Write("New phone number: ");
+                                    string tphone = Console.ReadLine();
+                                    PhoneNumberValidator.ValidatePhoneNumber(tphone);
+                                    System.Console.WriteLine("Validating phone number");
+                                }
+                                catch (PhoneNumberException e)
+                                {
+                                    System.Console.WriteLine("Error: " + e.Message);
+                                }
+                                catch (Exception e)
+                                {
+                                    System.Console.WriteLine("Unexpected error: " + e.Message);
+                                }
+                                finally
+                                {
+                                    e.Phone = tphone;
+                                    break;
+                                }
                             }
                             case 4:
                             {
-                                System.Console.Write("New email: ");
-                                string temail = Console.ReadLine();
-                                e.Email = temail;
-                                break;
+                                try
+                                {
+                                    System.Console.Write("New email: ");
+                                    string temail = Console.ReadLine();
+                                    EmailValidator.ValidateEmail(temail);
+                                    System.Console.WriteLine("Validating email address: ");
+                                }
+                                catch (EmailException e)
+                                {
+                                    System.Console.WriteLine("Error: " + e.message);
+                                }
+                                catch (Exception e)
+                                {
+                                    System.Console.WriteLine("Unexpected error: " + e.message);
+                                }
+                                finally
+                                {
+                                    e.Email = temail;
+                                    break;
+                                }                                
                             }
                             default:
                             {
@@ -418,5 +717,73 @@ class GFG
                 System.Console.WriteLine("Your input is invalid");
             }
         } while (choice != 0);
+    }
+}
+
+// Build exception class
+public class BirthDayException : Exception
+{
+    public BirthDayException() {}
+    public BirthDayException(string message) : base(message) {}
+    public BirthDayException(string message, Exception innerException) : base(message, innerException) {}
+}
+public class PhoneNumberException : Exception
+{
+    public PhoneNumberException() {}
+    public PhoneNumberException(string message) : base(message) {}
+    public PhoneNumberException(string message, Exception innerException) : base(message, innerException) {}
+}
+public class EmailException : Exception
+{
+    public EmailException() {}
+    public EmailException(string message) : base(message) {}
+    public EmailException(string message, Exception innerException) : base(message, innerException) {}
+}
+public class NameException : Exception
+{
+    public NameException() {}
+    public NameException(string message) : base(message) {}
+    public NameException(string message, Exception innerException) : base(message, innerException) {}
+}
+
+// Exception class
+public class BirthdayValidator
+{
+    public static void ValidateBirthDay(DateTime birthday)
+    {
+        if (birthday >= DateTime.Today)
+        {
+            throw new BirthDayException("Invalid birthday: ");
+        }
+    }
+}
+public class PhoneNumberValidator
+{
+    public static void ValidatePhoneNumber(string phoneNumber)
+    {
+        if (string.IsNullOrWhiteSpace(phoneNumber) || !phoneNumber.StartsWith("0") || phoneNumber.Length != 10 || !phoneNumber.All(char.IsDigit))
+        {
+            throw new PhoneNumberException("Invalid phone number");
+        }
+    }
+}
+public class EmailValidator
+{
+    public static void ValidateEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email) || email.IndexOf("@email.com") == 0)
+        {
+            throw new EmailException("Invalid email address");
+        }
+    }
+}
+public class NameValidator
+{
+    public static void ValidateName(string name)
+    {
+        if (name == "")
+        {
+            throw new NameException("Invalid name");
+        }
     }
 }
