@@ -10,7 +10,7 @@ class SinhVien : IComparable
     public double DiemDH { get; set; }
     public List<DSKQ> DSKQ { get; set; }
     public Khoa Khoa { get; set; }
-    public SinhVien(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, List<DSKQ> dskq, khoa)
+    public SinhVien(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, List<DSKQ> dskq, Khoa khoa)
     {
         MaSV = masv;
         HoTen = hoten;
@@ -33,7 +33,7 @@ class SinhVien : IComparable
     }
     public int CompareTo(object obj)
     {
-        if (obj = null)
+        if (obj == null)
         {
             return 1;
         }
@@ -44,7 +44,7 @@ class SinhVien : IComparable
         }
         else
         {
-            throw new ArgumentException("Object is not a SinhVien")
+            throw new ArgumentException("Object is not a SinhVien");
         }
     }
 }
@@ -52,7 +52,7 @@ class SinhVien : IComparable
 class SinhVienTaiChuc : SinhVien
 {
     public string NoiLK { get; set; }
-    public SinhVienTaiChuc(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, string noilk, List<DSKQ> dskq, khoa) :
+    public SinhVienTaiChuc(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, string noilk, List<DSKQ> dskq, Khoa khoa) :
     base (masv, hoten, ngaysinh, namhoc, diemdh, dskq, khoa)
     {
         NoiLK = noilk;
@@ -80,8 +80,8 @@ class SinhVienTaiChuc : SinhVien
 
 class SinhVienChinhQuy : SinhVien
 {
-    public SinhVienChinhQuy(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, List<DSKQ> dskq) :
-    base (masv, hoten, ngaysinh, namhoc, diemdh, dskq)
+    public SinhVienChinhQuy(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, List<DSKQ> dskq, Khoa khoa) :
+    base (masv, hoten, ngaysinh, namhoc, diemdh, dskq, khoa)
     {
 
     }
@@ -97,7 +97,7 @@ class SinhVienChinhQuy : SinhVien
             System.Console.WriteLine("Hoc ki: " + d.TenHK);
             System.Console.WriteLine("Diem: " + d.DiemTB);
         }
-        System.Console.WriteLine("Khoa: " + khoa);
+        System.Console.WriteLine("Khoa: " + Khoa);
     }
     public override void HienThiLoaiSinhVien()
     {
@@ -242,7 +242,7 @@ class GFG
                 int count = 0;
                 foreach (SinhVien s in sv)
                 {
-                    if (s.LaSinhVienChinhQuy)
+                    if (s.LaSinhVienChinhQuy())
                     {
                         count++;
                     }
@@ -292,7 +292,7 @@ class GFG
                 string tnoilk = Console.ReadLine();
                 foreach (SinhVien ts in sv)
                 {
-                    if (ts.LaSinhVienTaiChuc)
+                    if (ts.LaSinhVienTaiChuc())
                     {
                         if (ts.NoiLK == tnoilk)
                         {                            
@@ -336,6 +336,7 @@ class GFG
             System.Console.WriteLine("Thong tin:");
             s.HienThiThongTin();
             System.Console.WriteLine();
+            
         }
     }
 }
