@@ -17,18 +17,16 @@ class SinhVien
         DiemDH = diemdh;
         DSKQ = dskq;
     }
-    public virtual void HienThiThongTin()
-    {
-
-    }
-    public virtual void HienThiLoaiSinhVien()
-    {
-
-    }
+    public virtual void HienThiThongTin() {}
+    public virtual void HienThiLoaiSinhVien() {}
 
     public bool LaSinhVienChinhQuy()
     {
         return this is SinhVienChinhQuy;
+    }
+    public bool LaSinhVienTaiChuc()
+    {
+        return this is SinhVienTaiChuc;
     }
 }
 
@@ -101,11 +99,6 @@ class DSKQ
 {
     public string TenHK { get; set; }
     public double DiemTB { get; set; }
-    public List<SinhVien> dskq;
-    public DSKQ()
-    {
-        dskq = new List<SinhVien>();
-    }
     public DSKQ(string tenhk, double diemtb)
     {
         TenHK = tenhk;
@@ -119,7 +112,6 @@ class GFG
     {
         List<SinhVien> sv = new List<SinhVien>();
         List<Khoa> dskhoa = new List<Khoa>();
-        List<SinhVien> DSKQSV = new List<SinhVien>();
         int choice = -1;
         do
         {
@@ -129,6 +121,7 @@ class GFG
             3. Tong so sinh vien chinh quy
             4. Lay diem trung binh mon cua sinh vien cao nhat khoa
             5. Lay diem trung binh mon theo ten hoc ki
+            6. Ten sinh vien tai chuc theo noi LK cho truoc
             """);
             System.Console.Write("Nhap: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -255,9 +248,32 @@ class GFG
             {
                 System.Console.Write("Ten hoc ky: ");
                 string tenhk = Console.ReadLine();
-                foreach (SinhVien d in DSKQSV)
+                foreach (SinhVien d in sv)
                 {
-                    
+                    if (d.DSKQ.TenHK == tenhk)
+                    {
+                        System.Console.WriteLine("Sinh vien:");
+                        System.Console.WriteLine("ID: " + d.ID);
+                        System.Console.WriteLine("Name: " + d.Name);
+                        System.Console.WriteLine(d.DSKQ.DiemTB.ToString);
+                    }
+                }
+            }
+            else if (choice == 6)
+            {
+                System.Console.Write("Noi lien ket dao tao: ");
+                string tnoilk = Console.ReadLine();
+                foreach (SinhVien ts in sv)
+                {
+                    if (ts.LaSinhVienTaiChuc)
+                    {
+                        if (ts.NoiLK == tnoilk)
+                        {                            
+                            System.Console.WriteLine("Sinh vien:");
+                            System.Console.WriteLine("ID: " + ts.ID);
+                            System.Console.WriteLine("Name: " + ts.Name);
+                        }
+                    }
                 }
             }
         } while (choice != 0);
