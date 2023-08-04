@@ -25,6 +25,11 @@ class SinhVien
     {
 
     }
+
+    public bool LaSinhVienChinhQuy()
+    {
+        return this is SinhVienChinhQuy;
+    }
 }
 
 class SinhVienTaiChuc : SinhVien
@@ -114,7 +119,7 @@ class GFG
             System.Console.WriteLine("""
             1. Them sinh vien
             2. Kiem tra loai sinh vien theo ma so sinh vien
-            3. Diem trung binh mon theo hoc ki
+            3. Tong so sinh vien chinh quy
             """);
             System.Console.Write("Nhap: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -205,8 +210,15 @@ class GFG
             }
             else if (choice == 3)
             {
-                System.Console.Write("Ten hoc ky: ");
-                string tenhk = Console.ReadLine();
+                int count = 0;
+                foreach (SinhVien s in sv)
+                {
+                    if (s.LaSinhVienChinhQuy)
+                    {
+                        count++;
+                    }
+                }
+                System.Console.WriteLine("So sinh vien chinh quy la: " + count);
             }
         } while (choice != 0);
         foreach (SinhVien s in sv)
