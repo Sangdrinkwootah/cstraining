@@ -1,6 +1,7 @@
+using System;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
-class SinhVien
+class SinhVien : IComparable
 {
     public string MaSV { get; set; }
     public string HoTen { get; set; }
@@ -8,7 +9,8 @@ class SinhVien
     public string NamHoc { get; set; }
     public double DiemDH { get; set; }
     public List<DSKQ> DSKQ { get; set; }
-    public SinhVien(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, List<DSKQ> dskq)
+    public Khoa Khoa { get; set; }
+    public SinhVien(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, List<DSKQ> dskq, khoa)
     {
         MaSV = masv;
         HoTen = hoten;
@@ -16,6 +18,7 @@ class SinhVien
         NamHoc = namhoc;
         DiemDH = diemdh;
         DSKQ = dskq;
+        Khoa = khoa;
     }
     public virtual void HienThiThongTin() {}
     public virtual void HienThiLoaiSinhVien() {}
@@ -28,13 +31,29 @@ class SinhVien
     {
         return this is SinhVienTaiChuc;
     }
+    public int CompareTo(object obj)
+    {
+        if (obj = null)
+        {
+            return 1;
+        }
+        SinhVien tsv = obj as SinhVien;
+        if (tsv != null)
+        {
+            return this.NamHoc.CompareTo(tsv.NamHoc);
+        }
+        else
+        {
+            throw new ArgumentException("Object is not a SinhVien")
+        }
+    }
 }
 
 class SinhVienTaiChuc : SinhVien
 {
     public string NoiLK { get; set; }
-    public SinhVienTaiChuc(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, string noilk, List<DSKQ> dskq) :
-    base (masv, hoten, ngaysinh, namhoc, diemdh, dskq)
+    public SinhVienTaiChuc(string masv, string hoten, string ngaysinh, string namhoc, double diemdh, string noilk, List<DSKQ> dskq, khoa) :
+    base (masv, hoten, ngaysinh, namhoc, diemdh, dskq, khoa)
     {
         NoiLK = noilk;
     }
@@ -51,6 +70,7 @@ class SinhVienTaiChuc : SinhVien
             System.Console.WriteLine("Hoc ki: " + d.TenHK);
             System.Console.WriteLine("Diem: " + d.DiemTB);
         }
+        System.Console.WriteLine("Khoa: " + Khoa);
     }
     public override void HienThiLoaiSinhVien()
     {
@@ -77,6 +97,7 @@ class SinhVienChinhQuy : SinhVien
             System.Console.WriteLine("Hoc ki: " + d.TenHK);
             System.Console.WriteLine("Diem: " + d.DiemTB);
         }
+        System.Console.WriteLine("Khoa: " + khoa);
     }
     public override void HienThiLoaiSinhVien()
     {
@@ -122,6 +143,8 @@ class GFG
             4. Lay diem trung binh mon cua sinh vien cao nhat khoa
             5. Lay diem trung binh mon theo ten hoc ki
             6. Ten sinh vien tai chuc theo noi LK cho truoc
+            7. Ten sinh vien co diem dai hoc cao nhat tung khoa
+            8. Sap xep theo nam vao hoc
             """);
             System.Console.Write("Nhap: ");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -159,7 +182,9 @@ class GFG
                         DSKQ d = new DSKQ(tenhk, diemtb);
                         listkq.Add(d);
                     }
-                    SinhVien s = new SinhVienChinhQuy(masv, hoten, ngaysinh, namhoc, diemdh, listkq);
+                    System.Console.Write("Khoa: ");
+                    string khoa = Console.ReadLine();
+                    SinhVien s = new SinhVienChinhQuy(masv, hoten, ngaysinh, namhoc, diemdh, listkq, khoa);
                     sv.Add(s);
                 }
                 else if (n == 2)
@@ -190,7 +215,9 @@ class GFG
                         DSKQ d = new DSKQ(tenhk, diemtb);
                         listkq.Add(d);
                     }
-                    SinhVien s = new SinhVienTaiChuc(masv, hoten, ngaysinh, namhoc, diemdh, noilk, listkq);
+                    System.Console.Write("Khoa: ");
+                    string khoa = Console.ReadLine();
+                    SinhVien s = new SinhVienTaiChuc(masv, hoten, ngaysinh, namhoc, diemdh, noilk, listkq, khoa);
                     sv.Add(s);
                 }
                 else
@@ -230,14 +257,14 @@ class GFG
                 {
                     if (k.TenKhoa == tenkhoa)
                     {
-                        max = k.DSSV[0];
-                        int tname;
+                        double max = k.DSSV.DiemTB;
+                        string tname;
                         for (int i = 0; i < k.DSSV.Count; i++)
                         {
-                            if (k.DSSV[i] > max)
+                            if (k.DSSV.DiemTB > max)
                             {
-                                max = k.DSSV[i];
-                                tname = k.DSSV[i].HoTen.ToString();
+                                max = k.DSSV.DiemTB;
+                                tname = DSSV[i].HoTen;
                             }
                         }
                     }
@@ -274,6 +301,33 @@ class GFG
                             System.Console.WriteLine("Name: " + ts.Name);
                         }
                     }
+                }
+            }
+            else if (choice == 7)
+            {
+                foreach (Khoa khoa in dskhoa)
+                {
+                    System.Console.WriteLine("Khoa: " + khoa.TenKhoa);
+                    int max = khoa.DSSV[1].DiemDH;
+                    string tname, tid;
+                    for (int i = 0; i < khoa.DSSV.Count; i++)
+                    {
+                        if (khoa.DSSV[i] > max)
+                        {
+                            max = khoa.DSSV[i].DiemDH;
+                            tname = khoa.DSSV[i].Name;
+                            tid = khoa.DSSV[i].ID;
+                        }
+                    }
+                    System.Console.WriteLine("Sinh vien diem cao nhat: " + tname + ", ID: " + tid);
+                }
+            }
+            else if (choice == 8)
+            {
+                sv.Sort();
+                foreach (SinhVien s in sv)
+                {
+                    System.Console.WriteLine("Sinh vien " + s.Name + ", vao hoc nam " + s.NamHoc);
                 }
             }
         } while (choice != 0);
